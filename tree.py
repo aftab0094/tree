@@ -1,14 +1,12 @@
 import os
 import pyperclip
-import time
 
 def is_dir(path):
     try:
         with open(path) as f:
             f.close()
         return False
-    except Exception as e:
-        # print(e)
+    except:
         return True
 
 def is_child(dirc):
@@ -33,7 +31,7 @@ def str_length(string):
 
 def format_child(dirc):
     # ["child", ...] -> ["   child",...]
-    # " " X dirc.length + " --- ".length
+    # " " * dirc.length + " --- ".length
     child = get_child(dirc)
     temp_string = (str_length(dirc) + 5) * " "
     print(temp_string)
@@ -58,17 +56,13 @@ def main():
     tree = ""
     for path in ls_cur:
         if is_dir(path):
-            # print(f"{path} is dir")
             if not is_child(path):
                 print(path)
                 continue
-            # print(f"{path} has child")
-            # print(f"{path} --- ", end="")
             tree += "\n" + print_child(path)
         else:
             print(path)
             tree += "\n" + path
-        # print("iterated")
 
 if __name__ == "__main__":
     main()
